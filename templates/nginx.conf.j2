@@ -1,0 +1,51 @@
+user www;
+worker_processes  {{ ansible_processor_count * ansible_processor_cores }};
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    server_tokens  off;
+
+    client_header_timeout       10m;
+    client_body_timeout 10m;
+    send_timeout                10m;
+
+    connection_pool_size                256;
+    client_header_buffer_size   1k;
+    large_client_header_buffers 4 2k;
+    request_pool_size           4k;
+
+    gzip on;
+    gzip_min_length     1100;
+    gzip_buffers 4 8k;
+    gzip_comp_level 2;
+    gzip_proxied any;
+    gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/json;
+    gzip_disable "MSIE 6\.";
+    gzip_vary on;
+
+    output_buffers 1 32k;
+    postpone_output 1460;
+
+    sendfile        on;
+    tcp_nopush on;
+    tcp_nodelay on;
+
+    keepalive_timeout  10;
+
+    server {
+        listen 80;
+        server_name localhost;
+        location /status/ {
+            stub_status on;
+            access_log off;
+            allow 127.0.0.1;
+            deny all;
+        }
+    }
+    include /etc/nginx/conf.d/*.conf;
+}

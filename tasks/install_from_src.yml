@@ -1,0 +1,27 @@
+- name: add group 
+  group: name={{ nginx_user }} gid=48
+
+- name: add user
+  user: name={{ nginx_user }} uid=48 group={{ nginx_group }} home=/var/www
+
+- name: "install dependence packages"
+  yum: name={{ item }} state=latest
+  with_items:
+    - openssl-devel
+    - pcre-devel
+
+- name: "wget nginx package"
+  get_url: url={{ nginx_src_url }} dest={{ src_dir }}
+
+- name: "expand nginx"
+  command: tar xzvf {{ src_dir }}/nginx-{{ nginx_version }}.tar.gz chdir={{ src_dir }}
+
+- name: "install nginx"
+  shell: | 
+    ./configure {{ nginx_compile_option }} &&
+    make &&
+    make install
+    chdir={{ src_dir }}/nginx-{{ nginx_version }}
+
+- name: "create symlink"
+  file: src={{ nginx_prefix }} dest={{ nginx_symlink }} state=link
