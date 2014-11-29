@@ -1,7 +1,0 @@
-- name: nginx stop
-  command: stop nginx
-  ignore_errors: True
-
-
-- name: nginx start
-  command: start nginx
