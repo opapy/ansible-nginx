@@ -14,7 +14,7 @@
   get_url: url={{ nginx_src_url }} dest=/tmp
 
 - name: "expand nginx"
-  command: tar xzvf /tpm/nginx-{{ nginx_version }}.tar.gz chdir=/tmp
+  command: tar xzvf nginx-{{ nginx_version }}.tar.gz chdir=/tmp
 
 - name: "install nginx"
   shell: | 
