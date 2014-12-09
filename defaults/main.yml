@@ -1,3 +1,4 @@
+nginx_colon: ":"
 nginx_user: www 
 nginx_group: www
 nginx_version: '1.7.8'

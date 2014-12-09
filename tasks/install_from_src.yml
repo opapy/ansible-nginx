@@ -11,17 +11,17 @@
     - pcre-devel
 
 - name: "wget nginx package"
-  get_url: url={{ nginx_src_url }} dest={{ src_dir }}
+  get_url: url={{ nginx_src_url }} dest=/tmp
 
 - name: "expand nginx"
-  command: tar xzvf {{ src_dir }}/nginx-{{ nginx_version }}.tar.gz chdir={{ src_dir }}
+  command: tar xzvf /tpm/nginx-{{ nginx_version }}.tar.gz chdir=/tmp
 
 - name: "install nginx"
   shell: | 
     ./configure {{ nginx_compile_option }} &&
     make &&
     make install
-    chdir={{ src_dir }}/nginx-{{ nginx_version }}
+    chdir=/tmp/nginx-{{ nginx_version }}
 
 - name: "create symlink"
   file: src={{ nginx_prefix }} dest={{ nginx_symlink }} state=link
