@@ -5,7 +5,7 @@
   ignore_errors: True
 
 - include: install_from_src.yml
-  when: result.get('stderr') != 'nginx version{{ nginx_colon }} nginx/{{ nginx_version }}'
+  when: result.get('stderr') != 'nginx version{{ ':' }} nginx/{{ nginx_version }}'
 
 - include: configure.yml
   notify: restart nginx
