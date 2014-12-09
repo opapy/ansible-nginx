@@ -1,6 +1,6 @@
 nginx_user: www 
 nginx_group: www
-nginx_version: '1.7.7'
+nginx_version: '1.7.8'
 nginx_src_url: 'http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz'
 nginx_prefix: '/usr/local/nginx-{{ nginx_version }}'
 nginx_symlink: '/usr/local/nginx'
