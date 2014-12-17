@@ -1,5 +1,5 @@
 - name: get currently installed nginx version
-  shell: "{{ nginx_symlink }}/sbin/nginx -v"
+  shell: "{{ nginx_prefix }}/sbin/nginx -v"
   register: result
   always_run: yes
   ignore_errors: True

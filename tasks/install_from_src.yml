@@ -2,7 +2,7 @@
   group: name={{ nginx_user }} gid=48
 
 - name: add user
-  user: name={{ nginx_user }} uid=48 group={{ nginx_group }} home=/var/www
+  user: name={{ nginx_user }} uid=48 group={{ nginx_group }} home=/var/nginx
 
 - name: "install dependence packages"
   yum: name={{ item }} state=latest
@@ -11,17 +11,14 @@
     - pcre-devel
 
 - name: "wget nginx package"
-  get_url: url={{ nginx_src_url }} dest=/tmp
+  get_url: url={{ nginx_src_url }} dest=/var/tmp
 
 - name: "expand nginx"
-  command: tar xzvf nginx-{{ nginx_version }}.tar.gz chdir=/tmp
+  command: tar xzvf nginx-{{ nginx_version }}.tar.gz chdir=/var/tmp
 
 - name: "install nginx"
   shell: | 
     ./configure {{ nginx_compile_option }} &&
     make &&
     make install
-    chdir=/tmp/nginx-{{ nginx_version }}
-
-- name: "create symlink"
-  file: src={{ nginx_prefix }} dest={{ nginx_symlink }} state=link
+    chdir=/var/tmp/nginx-{{ nginx_version }}
