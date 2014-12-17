@@ -1,8 +1,8 @@
 - name: add group 
-  group: name={{ nginx_user }} gid=48
+  group: name={{ nginx_user }}
 
 - name: add user
-  user: name={{ nginx_user }} uid=48 group={{ nginx_group }} home=/var/nginx
+  user: name={{ nginx_user }} group={{ nginx_group }} home=/var/nginx
 
 - name: "install dependence packages"
   yum: name={{ item }} state=latest
