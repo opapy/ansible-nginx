@@ -8,4 +8,3 @@
   when: result.get('stderr') != 'nginx version{{ ':' }} nginx/{{ nginx_version }}'
 
 - include: configure.yml
-  notify: restart nginx

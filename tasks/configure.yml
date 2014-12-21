@@ -6,3 +6,6 @@
 
 - name: put upstart script
   template: src=etc/init/nginx.conf.j2 dest=/etc/init/nginx.conf owner=root group=root mode=0644
+  changed_when: true
+  notify:
+    - restart nginx
