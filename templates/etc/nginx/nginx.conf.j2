@@ -1,5 +1,3 @@
-daemon off;
-
 user {{ nginx_user }};
 worker_processes  {{ ansible_processor_count * ansible_processor_cores }};
 
