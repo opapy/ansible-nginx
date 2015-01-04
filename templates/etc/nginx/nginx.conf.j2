@@ -37,15 +37,15 @@ http {
 
     keepalive_timeout  10;
 
-    server {
-        listen 80;
-        server_name localhost;
-        location /status/ {
-            stub_status on;
-            access_log off;
-            allow 127.0.0.1;
-            deny all;
-        }
-    }
+    #server {
+    #    listen 80;
+    #    server_name localhost;
+    #    location /status/ {
+    #        stub_status on;
+    #        access_log off;
+    #        allow 127.0.0.1;
+    #        deny all;
+    #    }
+    #}
     include /etc/nginx/conf.d/*.conf;
 }
