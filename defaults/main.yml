@@ -10,8 +10,8 @@ nginx_compile_option: |
   --pid-path=/var/run/nginx.pid \
   --lock-path=/var/lock/nginx.lock \
   --http-log-path=/var/log/nginx/access.log \
-  --without-http_fastcgi_module \
-  --without-http_scgi_module \
   --with-http_gzip_static_module \
   --with-http_stub_status_module \
-  --with-http_ssl_module
+  --with-http_ssl_module \
+  --with-http_spdy_module \
+  --with-http_image_filter_module
