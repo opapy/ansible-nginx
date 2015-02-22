@@ -9,6 +9,7 @@
   with_items:
     - openssl-devel
     - pcre-devel
+    - gd-devel  
 
 - name: "wget nginx package"
   get_url: url={{ nginx_src_url }} dest=/var/tmp
